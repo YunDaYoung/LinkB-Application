@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="157.5"
+            android:background="#7842A0" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="448"
+
+            />
+
+
+    </LinearLayout>
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/SearchTooltitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/main_nav_toolbar2"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                app:contentInsetStart="@null"
+                >
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="15"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5">
+
+                        <ImageButton
+                            android:layout_width="15dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_baseline_navigate_before_24"
+                            />
+
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="9.3"
+                        />
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="207">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            >
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:hint="검색어를 입력하세요"
+                                android:background="@drawable/corner_round_donut_edit"
+                                android:textColorHint="#ffffff"
+                                />
+
+                            <ImageButton
+                                android:id="@+id/frag2_searchButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/ic_baseline_search_24"
+                                android:layout_centerVertical="true"
+                                android:layout_margin="5dp"
+                                android:background="#00000000"
+                                android:text="Button"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="15"
+                        />
+
+
+                </LinearLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/SearchTooltitle"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+
+                />
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="207">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="10.5" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="448"
+                        android:background="@drawable/find_page_shape"
+                        android:outlineProvider="bounds">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="15" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="325">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="11.5" />
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="187.5">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:orientation="vertical">
+
+
+                                            <RadioGroup
+                                                android:layout_width="match_parent"
+                                                android:layout_height="0dp"
+                                                android:layout_weight="20"
+                                                android:orientation="horizontal">
+
+                                                <RadioButton
+                                                    android:id="@+id/eventRadioBtn1"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_weight="1"
+                                                    android:background="@drawable/radio_button_search_frag"
+                                                    android:button="@null"
+                                                    android:checked="true"
+                                                    android:gravity="center"
+                                                    android:text="추천행사"
+                                                    android:textColor="@color/search_radio_button_frag"
+                                                    android:textSize="16.6sp" />
+
+                                                <RadioButton
+                                                    android:id="@+id/eventRadioBtn2"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_weight="1"
+                                                    android:background="@drawable/radio_button_search_frag"
+                                                    android:button="@null"
+                                                    android:gravity="center"
+                                                    android:text="최근 검색어"
+                                                    android:textColor="@color/search_radio_button_frag"
+                                                    android:textSize="16.6sp" />
+
+                                            </RadioGroup>
+
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="0dp"
+                                                android:layout_weight="349"
+                                                android:orientation="vertical">
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="0dp"
+                                                    android:layout_weight="10" />
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="0dp"
+                                                    android:layout_weight="187.5">
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:orientation="vertical">
+
+                                                        <!--리스트 뷰랑 아래 커스텀 버튼 부분-->
+                                                        <LinearLayout
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="0dp"
+                                                            android:layout_weight="99.2">
+
+                                                            <LinearLayout
+                                                                android:layout_width="0dp"
+                                                                android:layout_height="match_parent"
+                                                                android:layout_weight="3.5" />
+
+                                                            <LinearLayout
+                                                                android:layout_width="0dp"
+                                                                android:layout_height="match_parent"
+                                                                android:layout_weight="165">
+
+
+                                                                <LinearLayout
+                                                                    android:layout_width="match_parent"
+                                                                    android:layout_height="match_parent"
+                                                                    android:orientation="vertical">
+
+                                                                    <LinearLayout
+                                                                        android:layout_width="match_parent"
+                                                                        android:layout_height="0dp"
+                                                                        android:layout_weight="99.2">
+
+                                                                        <RelativeLayout
+                                                                            android:layout_width="match_parent"
+                                                                            android:layout_height="match_parent">
+
+
+                                                                            <ListView
+                                                                                android:id="@+id/eventList"
+                                                                                android:layout_width="match_parent"
+                                                                                android:layout_height="wrap_content" />
+
+                                                                            <ListView
+                                                                                android:id="@+id/lastSearch"
+                                                                                android:layout_width="match_parent"
+                                                                                android:layout_height="wrap_content"
+                                                                                android:visibility="invisible" />
+
+                                                                        </RelativeLayout>
+
+                                                                    </LinearLayout>
+
+                                                                    <LinearLayout
+                                                                        android:layout_width="match_parent"
+                                                                        android:layout_height="0dp"
+                                                                        android:layout_weight="20.2">
+
+                                                                        <LinearLayout
+                                                                            android:layout_width="match_parent"
+                                                                            android:layout_height="match_parent"
+                                                                            android:orientation="vertical">
+
+                                                                            <Space
+                                                                                android:layout_width="match_parent"
+                                                                                android:layout_height="0dp"
+                                                                                android:layout_weight="5" />
+
+                                                                            <RelativeLayout
+                                                                                android:layout_width="match_parent"
+                                                                                android:layout_height="match_parent">
+
+                                                                                <Button
+                                                                                    android:layout_width="wrap_content"
+                                                                                    android:layout_height="match_parent"
+                                                                                    android:layout_alignParentRight="true"
+                                                                                    android:background="#00000000"
+                                                                                    android:text="+전체 행사보기"
+                                                                                    android:textColor="#aaaaaa" />
+
+
+                                                                                <LinearLayout
+                                                                                    android:id="@+id/lastestSearchButtons"
+                                                                                    android:layout_width="wrap_content"
+                                                                                    android:layout_height="wrap_content"
+                                                                                    android:orientation="horizontal"
+                                                                                    android:visibility="invisible">
+
+
+                                                                                    <Button
+                                                                                        android:id="@+id/shutDownSearchBtn"
+                                                                                        android:layout_width="wrap_content"
+                                                                                        android:layout_height="wrap_content"
+                                                                                        android:background="#00000000"
+                                                                                        android:text="검색어 저장 끄기"
+                                                                                        android:textColor="#aaaaaa" />
+
+                                                                                    <Button
+                                                                                        android:id="@+id/allDeleteBtn"
+                                                                                        android:layout_width="wrap_content"
+                                                                                        android:layout_height="wrap_content"
+                                                                                        android:background="#00000000"
+                                                                                        android:text="전체 삭제"
+                                                                                        android:textColor="#aaaaaa"
+                                                                                        android:textSize="6dp" />
+
+                                                                                </LinearLayout>
+
+
+                                                                            </RelativeLayout>
+
+                                                                            <Space
+                                                                                android:layout_width="match_parent"
+                                                                                android:layout_height="0dp"
+                                                                                android:layout_weight="5" />
+
+                                                                        </LinearLayout>
+
+                                                                    </LinearLayout>
+
+
+                                                                </LinearLayout>
+                                                            </LinearLayout>
+
+                                                            <LinearLayout
+                                                                android:layout_width="0dp"
+                                                                android:layout_height="match_parent"
+                                                                android:layout_weight="3.5" />
+
+
+                                                        </LinearLayout>
+
+                                                        <!--중간에 줄-->
+                                                        <LinearLayout
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="10px"
+                                                            android:background="#E7E7E7" />
+
+                                                        <!--아래 부분-->
+                                                        <LinearLayout
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="0dp"
+                                                            android:layout_weight="215.8">
+
+                                                            <LinearLayout
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="match_parent"
+                                                                android:orientation="vertical">
+
+                                                                <LinearLayout
+                                                                    android:layout_width="match_parent"
+                                                                    android:layout_height="0dp"
+                                                                    android:layout_weight="14.3" />
+
+                                                                <LinearLayout
+                                                                    android:layout_width="match_parent"
+                                                                    android:layout_height="0dp"
+                                                                    android:layout_weight="215.8">
+
+                                                                    <LinearLayout
+                                                                        android:layout_width="match_parent"
+                                                                        android:layout_height="match_parent">
+
+                                                                        <TextView
+                                                                            android:layout_width="wrap_content"
+                                                                            android:layout_height="wrap_content"
+                                                                            android:text="#당신에게 꼭 맞는 추천행사!"
+                                                                            android:textSize="17.3dp"
+                                                                            android:textStyle="bold" />
+
+                                                                    </LinearLayout>
+
+
+                                                                </LinearLayout>
+
+
+                                                            </LinearLayout>
+
+
+                                                        </LinearLayout>
+
+                                                    </LinearLayout>
+
+
+                                                </LinearLayout>
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="11.5" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+
+                />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

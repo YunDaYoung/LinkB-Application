@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".main">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/tooltitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/main_nav_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/colorPrimary"
+                    android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="LinkB"
+                        android:textColor="#ffffff"
+                        android:textSize="10pt"
+                        android:textStyle="bold" />
+
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.AppBarLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <LinearLayout
+            android:id="@+id/photoview_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tooltitle"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/tooltitle"
+                    android:orientation="vertical"
+                    android:weightSum="365.5">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/photoview"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="110"
+                        android:background="@color/colorPrimary"
+                        android:paddingBottom="20dp"
+
+                        />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="12" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginBottom="7dp"
+                        android:text="# 당신에게 꼭 맞는 추천행사!"
+                        android:textColor="#000000"
+                        android:textSize="17.778dp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="140"
+                        android:nestedScrollingEnabled="false" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginBottom="7dp"
+                        android:text="# 다양한 행사를 확인하세요"
+                        android:textColor="#000000"
+                        android:textSize="17.778dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="140"
+                        android:background="#ECECEC" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:weightSum="365.5">
+
+                    <me.relex.circleindicator.CircleIndicator3
+                        android:id="@+id/photoview_indicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="180"
+                        app:ci_animator="@anim/indi_ani"
+                        app:ci_drawable="@drawable/selected_pager_line"
+                        app:ci_drawable_unselected="@drawable/default_pager_line"
+                        app:ci_height="4dp"
+                        app:ci_margin="4dp"
+                        app:ci_width="25dp" />
+
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <include
+        android:id="@+id/main_nav_view"
+        layout="@layout/main_nav_header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start" />
+
+</androidx.drawerlayout.widget.DrawerLayout>
