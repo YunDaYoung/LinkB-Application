@@ -11,13 +11,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="10dp"
             android:text="# 당신에게 꼭 맞는 추천행사!"
             android:textColor="@color/black"
             android:textSize="18dp"
             android:fontFamily="@font/notosansmedium"/>
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/main_recommend_event_list"
+            android:id="@+id/recommend_event_list"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"/>
     </LinearLayout>

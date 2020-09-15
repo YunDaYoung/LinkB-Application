@@ -5,14 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="193dp"
     android:layout_height="179dp"
-    android:layout_marginLeft="6dp">
+    android:layout_margin="6dp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <com.example.linkb.roundImageView.RoundImageView
             android:id="@+id/select_event_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -20,6 +21,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:orientation="vertical"
+            android:background="#F6F6F6"
             tools:ignore="MissingConstraints" >
             <TextView
                 android:id="@+id/select_event_title"

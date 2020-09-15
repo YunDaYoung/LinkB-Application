@@ -1,0 +1,45 @@
+package com.example.linkb.Class;
+
+public class RecommendEvent {
+    public String name;
+    public String host;
+    public String startDate;
+    public String endDate;
+    public String eventLocation;
+    public String eventImage;
+
+    public RecommendEvent(){}
+
+    public RecommendEvent(String name, String host, String startDate, String endDate, String eventLocation, String eventImage){
+        this.name = name;
+        this.host = host;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.eventLocation = eventLocation;
+        this.eventImage = eventImage;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getHost(){
+        return host;
+    }
+
+    public String getStartDate(){
+        return startDate;
+    }
+
+    public String getEndDate(){
+        return endDate;
+    }
+
+    public String getEventLocation(){
+        return eventLocation;
+    }
+
+    public String getEventImage(){
+        return eventImage;
+    }
+}

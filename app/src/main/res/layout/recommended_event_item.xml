@@ -14,7 +14,8 @@
         <com.example.linkb.roundImageView.RoundImageView
             android:id="@+id/recommend_event_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/recommend_event_d_day"
