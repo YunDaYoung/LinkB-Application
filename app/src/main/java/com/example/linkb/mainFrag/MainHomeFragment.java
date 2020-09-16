@@ -1,15 +1,17 @@
 package com.example.linkb.mainFrag;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.util.TypedValue;
@@ -21,15 +23,16 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import com.example.linkb.Adapter.RecyclerviewEventAdapter;
+import com.example.linkb.Adapter.SelectEventListAdapter;
 import com.example.linkb.Class.MainCover;
+import com.example.linkb.Class.RecommendEvent;
+import com.example.linkb.Class.SelectEvent;
 import com.example.linkb.R;
 import com.example.linkb.main;
-import com.example.linkb.mainFrag.homeInternalFrag.MainRecommendedEventFrag;
-import com.example.linkb.mainFrag.homeInternalFrag.MainSelectEventFrag;
 import com.example.linkb.roundImageView.RoundImageView;
 
 import org.json.JSONArray;
@@ -44,6 +47,9 @@ import java.util.ArrayList;
 
 public class MainHomeFragment extends Fragment {
 
+    Context context;
+    Activity activity;
+
     ImageButton menuBtn;
     ImageButton refreshBtn;
 
@@ -54,18 +60,16 @@ public class MainHomeFragment extends Fragment {
     TextView indicatorLine4;
     TextView indicatorLine5;
 
+    RecyclerView selectEventRecyclerView;
+    RecyclerView recommendedEventRecyclerView;
 
     ArrayList<MainCover> coverList;
+    ArrayList<SelectEvent> selectEventList;
+    ArrayList<RecommendEvent> recommendedEventList;
     ArrayList<TextView> lineList;
 
     int num;
     Bitmap bmp;
-    int textWidth;
-    int textHeight;
-
-    private MainRecommendedEventFrag recommendedFragment = new MainRecommendedEventFrag();
-    private MainSelectEventFrag selectFragment = new MainSelectEventFrag();
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -96,7 +100,15 @@ public class MainHomeFragment extends Fragment {
         lineList.add(indicatorLine4);
         lineList.add(indicatorLine5);
 
-        new RestAPITaskRecommend("http://101.101.161.189/api/index.php/linkb_cover/select_cover_list", imageSlide, lineList).execute();
+        context = view.getContext();
+        activity = getActivity();
+
+        selectEventRecyclerView = (RecyclerView) view.findViewById(R.id.select_event_list);
+        recommendedEventRecyclerView = (RecyclerView) view.findViewById(R.id.recommend_event_list);
+
+        new RestAPITaskRecommend("http://101.101.161.189/api/index.php/linkb_cover/select_cover_list", imageSlide, context, activity).execute();
+        new RestAPITaskRecommend1("http://101.101.161.189/api/index.php/linkb_event/select_recommend_event_list", recommendedEventRecyclerView, context, activity).execute();
+        new RestAPITaskRecommend2("http://101.101.161.189/api/index.php/linkb_event/select_event_list", selectEventRecyclerView, context, activity).execute();
 
 
 
@@ -104,7 +116,6 @@ public class MainHomeFragment extends Fragment {
         menuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("button", "openDrawer");
                 ((main)getContext()).openMenu();
             }
         });
@@ -115,28 +126,22 @@ public class MainHomeFragment extends Fragment {
 //                ((main)getContext()).refreshing();
 //            }
 //        });
-
-        FragmentManager fragmentManager = getFragmentManager();
-        //Recommend event = 추천행사 fragment 띄우기
-        FragmentTransaction transaction1 = fragmentManager.beginTransaction();
-        transaction1.replace(R.id.recommend_frame, recommendedFragment).commitAllowingStateLoss();
-        //Select event = 일반행사 fragment 띄우기기
-        FragmentTransaction transaction2 = fragmentManager.beginTransaction();
-        transaction2.replace(R.id.select_frame, selectFragment).commitAllowingStateLoss();
-
         return view;
     }
 
+    //Main cover 데이터 불러오기
     public class RestAPITaskRecommend extends AsyncTask<Integer, Void, ArrayList<MainCover>> {
 
         protected String mURL;
         protected ViewFlipper imageSlide;
-        protected ArrayList<TextView> lineList;
+        protected Context context;
+        protected Activity activity;
 
-        public RestAPITaskRecommend(String mURL, ViewFlipper imageSlide, ArrayList<TextView> lineList){
+        public RestAPITaskRecommend(String mURL, ViewFlipper imageSlide, Context context, Activity activity){
             this.mURL = mURL;
             this.imageSlide = imageSlide;
-            this.lineList = lineList;
+            this.context = context;
+            this.activity = activity;
         }
 
 
@@ -172,7 +177,6 @@ public class MainHomeFragment extends Fragment {
                 }
                 String result = builder.toString();
 
-                Log.e("data3", result);
 
                 JSONObject getKey = new JSONObject(result);
 
@@ -197,7 +201,6 @@ public class MainHomeFragment extends Fragment {
 
         @Override
         protected void onPostExecute(ArrayList<MainCover> coverList) {
-            Log.e("data5", String.valueOf(coverList.size()));
 
             //뷰플리퍼(슬라이드 기능)에 이미지 갯수에 맞게 추가
             Runnable r = new Runnable() {
@@ -207,12 +210,12 @@ public class MainHomeFragment extends Fragment {
                         try{
                             URL url = new URL(coverList.get(num).getMobileImage());
                             bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                            getActivity().runOnUiThread(new Runnable() {
+                            activity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     //이미지 세팅
-                                    RoundImageView img = new RoundImageView(getContext());
-                                    final int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 340, getResources().getDisplayMetrics());
+                                    RoundImageView img = new RoundImageView(context);
+                                    final int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 340, context.getResources().getDisplayMetrics());
                                     img.setLayoutParams(new ViewFlipper.LayoutParams(width, ViewGroup.LayoutParams.MATCH_PARENT));
                                     ViewFlipper.LayoutParams ip = (ViewFlipper.LayoutParams)img.getLayoutParams();
                                     img.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -231,14 +234,169 @@ public class MainHomeFragment extends Fragment {
             thread1.start();
 
             //이미지 슬라이드 설정 - 왼쪽에서 등장 애니메이션
-            Animation showIn = AnimationUtils.loadAnimation(getContext(), R.anim.slide_out_left);
+            Animation showIn = AnimationUtils.loadAnimation(context, R.anim.slide_out_left);
             imageSlide.setInAnimation(showIn);
             //이미지 슬라이드 설정 - 오른쪽으로 퇴장 애니메이션
-            imageSlide.setOutAnimation(getContext(), R.anim.slide_in_right);
+            imageSlide.setOutAnimation(context, R.anim.slide_in_right);
 
             //이미지 슬라이드 설정 - 자동 슬라이딩
             imageSlide.setFlipInterval(4000);//플리핑 간격(1000ms)
             imageSlide.startFlipping();
+
+        }
+    }
+
+    //RecommendEvent 데이터 불러오기
+    public class RestAPITaskRecommend1 extends AsyncTask<Integer, Void, ArrayList<RecommendEvent>> {
+
+        protected String mURL;
+        RecyclerView recyclerView;
+        protected Context context;
+        protected Activity activity;
+
+        public RestAPITaskRecommend1(String mURL, RecyclerView recyclerView, Context context, Activity activity){
+            this.mURL = mURL;
+            this.recyclerView = recyclerView;
+            this.context = context;
+            this.activity = activity;
+        }
+
+
+        @Override
+        protected ArrayList<RecommendEvent> doInBackground(Integer... params) {
+            try{
+                URL url = new URL(mURL);
+                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                conn.setDefaultUseCaches(false);
+                conn.setRequestMethod("GET");
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+                conn.setRequestProperty("content-type", "application/x-www-form-urlencoded");
+                conn.addRequestProperty("apikey", "starthub");
+
+                InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                BufferedReader reader = new BufferedReader(tmp);
+                StringBuilder builder = new StringBuilder();
+                String str;
+                while((str = reader.readLine()) != null){
+                    builder.append(str+ "\n");
+                }
+                String result = builder.toString();
+
+
+                JSONObject getKey = new JSONObject(result);
+
+                JSONArray jsonArray = (JSONArray)getKey.get("event_list");
+
+
+                recommendedEventList = new ArrayList<>();
+                for(int i =0; i< jsonArray.length(); i++) {
+                    JSONObject jsonObject = (JSONObject)jsonArray.get(i);
+                    recommendedEventList.add(new RecommendEvent(
+                            jsonObject.get("event_idx").toString(),
+                            jsonObject.get("event_name").toString(),
+                            jsonObject.get("event_host").toString(),
+                            jsonObject.get("event_start_date").toString(),
+                            jsonObject.get("event_end_date").toString(),
+                            jsonObject.get("event_location").toString(),
+                            jsonObject.get("event_image").toString()
+                    ));
+                }
+
+                return recommendedEventList;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<RecommendEvent> eventList) {
+
+            LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+            RecyclerviewEventAdapter adapter = new RecyclerviewEventAdapter(context, eventList);
+            adapter.notifyDataSetChanged();
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setHasFixedSize(true);
+
+        }
+    }
+
+    //SelectEvent 데이터 불러오기
+    public class RestAPITaskRecommend2 extends AsyncTask<Integer, Void, ArrayList<SelectEvent>> {
+
+        protected String mURL;
+        RecyclerView recyclerView;
+        protected Context context;
+        protected Activity activity;
+
+        public RestAPITaskRecommend2(String mURL, RecyclerView recyclerView, Context context, Activity activity){
+            this.mURL = mURL;
+            this.recyclerView = recyclerView;
+            this.context = context;
+            this.activity = activity;
+        }
+
+
+        @Override
+        protected ArrayList<SelectEvent> doInBackground(Integer... params) {
+            try{
+                URL url = new URL(mURL);
+                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                conn.setDefaultUseCaches(false);
+                conn.setRequestMethod("GET");
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+                conn.setRequestProperty("content-type", "application/x-www-form-urlencoded");
+                conn.addRequestProperty("apikey", "starthub");
+
+                InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                BufferedReader reader = new BufferedReader(tmp);
+                StringBuilder builder = new StringBuilder();
+
+                String str;
+                while((str = reader.readLine()) != null){
+                    builder.append(str+ "\n");
+                }
+                String result = builder.toString();
+
+                JSONObject getKey = new JSONObject(result);
+
+                JSONArray jsonArray = (JSONArray)getKey.get("event_list");
+
+                selectEventList = new ArrayList<>();
+                for(int i =0; i< jsonArray.length(); i++) {
+                    JSONObject jsonObject = (JSONObject)jsonArray.get(i);
+                    selectEventList.add(new SelectEvent(
+                            jsonObject.get("event_idx").toString(),
+                            jsonObject.get("event_name").toString(),
+                            jsonObject.get("event_host").toString(),
+                            jsonObject.get("event_start_date").toString(),
+                            jsonObject.get("event_end_date").toString(),
+                            jsonObject.get("event_location").toString(),
+                            jsonObject.get("event_image").toString()
+                    ));
+                }
+
+                return selectEventList;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<SelectEvent> eventList) {
+
+            GridLayoutManager layoutManager = new GridLayoutManager(context, 2);
+            SelectEventListAdapter adapter = new SelectEventListAdapter(context, eventList);
+            adapter.notifyDataSetChanged();
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setHasFixedSize(true);
 
         }
     }

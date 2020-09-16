@@ -23,7 +23,7 @@ public class main extends AppCompatActivity {
     // FrameLayout에 각 메뉴의 Fragment를 바꿔 줌
     private FragmentManager fragmentManager = getSupportFragmentManager();
     // 4개의 메뉴에 들어갈 Fragment들
-    private MainHomeFragment menu1Fragment = new MainHomeFragment();
+    private MainHomeFragment menu1Fragment;
     private mainSearchFrag menu2Fragment = new mainSearchFrag();
     private mainAlertFrag menu3Fragment = new mainAlertFrag();
     private mainTempFrag menu4Fragment = new mainTempFrag();
@@ -44,7 +44,7 @@ public class main extends AppCompatActivity {
     }
 
     public void refreshing(){
-
+        menu1Fragment = new MainHomeFragment();
         //Drawer 뷰
         maindrawer = (DrawerLayout) findViewById(R.id.main_drawer_layout);
         drawerView = (View) findViewById(R.id.main_nav_view);

@@ -9,7 +9,7 @@
             android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -101,17 +101,47 @@
                             android:background="@color/bar_gray"/>
                     </LinearLayout>
                 </LinearLayout>
-                <FrameLayout
-                    android:id="@+id/recommend_frame"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="305dp"
-                    android:padding="5dp"/>
-                <FrameLayout
-                    android:id="@+id/select_frame"
+                    android:layout_height="310dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="# 당신에게 꼭 맞는 추천행사!"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"
+                        android:fontFamily="@font/notosansmedium"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recommend_event_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:padding="4dp" />
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="# 다양한 행사들을 확인하세요. "
+                        android:textColor="@color/black"
+                        android:textSize="18dp"
+                        android:fontFamily="@font/notosansmedium"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/select_event_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:overScrollMode="never"
+                        android:nestedScrollingEnabled="false"/>
+                </LinearLayout>
             </LinearLayout>
+
         </androidx.core.widget.NestedScrollView>
 </FrameLayout>

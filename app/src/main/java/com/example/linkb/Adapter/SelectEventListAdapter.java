@@ -2,6 +2,7 @@ package com.example.linkb.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.linkb.Class.RecommendEvent;
 import com.example.linkb.Class.SelectEvent;
+import com.example.linkb.EventDetail;
 import com.example.linkb.R;
 
 import java.net.URL;
@@ -100,7 +102,10 @@ public class SelectEventListAdapter extends RecyclerView.Adapter<SelectEventList
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), EventDetail.class);
+                intent.putExtra("event_id", eventList.get(position).id);
 
+                context.startActivity(intent);
             }
         });
     }

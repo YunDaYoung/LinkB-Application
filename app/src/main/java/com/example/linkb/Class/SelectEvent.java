@@ -1,6 +1,7 @@
 package com.example.linkb.Class;
 
 public class SelectEvent {
+    public String id;
     public String name;
     public String host;
     public String startDate;
@@ -10,7 +11,8 @@ public class SelectEvent {
 
     public SelectEvent() {}
 
-    public SelectEvent(String name, String host, String startDate, String endDate, String eventLocation, String eventImage) {
+    public SelectEvent(String id, String name, String host, String startDate, String endDate, String eventLocation, String eventImage) {
+        this.id = id;
         this.name = name;
         this.host = host;
         this.startDate = startDate;
