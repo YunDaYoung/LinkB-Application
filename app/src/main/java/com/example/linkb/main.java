@@ -2,6 +2,7 @@ package com.example.linkb;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.linkb.mainFrag.MainHomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -109,10 +111,15 @@ public class main extends AppCompatActivity {
         refreshing();
     }
 
+    private long time= 0;
     @Override
     public void onBackPressed() {
-        // Default
-        backPressHandler.onBackPressed();
+        if(System.currentTimeMillis()-time>=2000){
+            time=System.currentTimeMillis();
+            Toast.makeText(getApplicationContext(),"뒤로 버튼을 한번 더 누르면 종료합니다.", Toast.LENGTH_SHORT).show();
+        }else if(System.currentTimeMillis()-time<2000){
+            ActivityCompat.finishAffinity(this);
+        }
     }
 
     public void openMenu(){

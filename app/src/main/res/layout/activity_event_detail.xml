@@ -32,7 +32,7 @@
                     android:textColor="@color/white"
                     android:textSize="7pt"
                     android:gravity="center"
-                    android:background="#99000000"/>
+                    android:background="#66000000"/>
                 <ImageButton
                     android:id="@+id/before_btn"
                     android:layout_width="50dp"
@@ -151,7 +151,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/bar_gray"/>
+                android:background="@color/line_gray1"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -170,8 +170,16 @@
             </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="7dp"
-                android:background="@color/bar_gray"/>
+                android:layout_height="1dp"
+                android:background="@color/line_gray2"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/line_gray1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_gray2"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
@@ -189,14 +197,22 @@
                     android:layout_height="wrap_content"
                     android:text="회사"
                     android:textColor="@color/black"
-                    android:textSize="7pt"
+                    android:textSize="8pt"
                     android:fontFamily="@font/notosansregular"
                     android:layout_marginTop="27dp"/>
             </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="7dp"
-                android:background="@color/bar_gray"/>
+                android:layout_height="1dp"
+                android:background="@color/line_gray2"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/line_gray1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_gray2"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="310dp"
@@ -224,6 +240,7 @@
                 android:text="참가하기"
                 android:textColor="@color/white"
                 android:textSize="7pt"
+                android:textStyle="bold"
                 android:fontFamily="@font/notosansbold"/>
         </LinearLayout>
     </ScrollView>

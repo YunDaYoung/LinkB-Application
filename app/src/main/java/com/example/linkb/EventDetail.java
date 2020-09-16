@@ -261,7 +261,7 @@ public class EventDetail extends AppCompatActivity {
             joinBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getApplicationContext(), detailList.get(0).getEventName() + "신청", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), detailList.get(0).getEventName() + " 참가", Toast.LENGTH_SHORT).show();
                 }
             });
         }
