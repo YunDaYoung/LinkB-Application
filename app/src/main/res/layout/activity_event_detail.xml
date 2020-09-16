@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     tools:context="com.example.linkb.EventDetail">
     <ScrollView
+        android:id="@+id/scollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
@@ -149,7 +150,7 @@
             </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:background="@color/bar_gray"/>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -226,5 +227,14 @@
                 android:fontFamily="@font/notosansbold"/>
         </LinearLayout>
     </ScrollView>
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/up_scroll_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_up_chevron"
+        tools:ignore="VectorDrawableCompat" />
 </androidx.constraintlayout.widget.ConstraintLayout>

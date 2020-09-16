@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import com.example.linkb.Adapter.RecyclerviewEventAdapter;
 import com.example.linkb.Class.DetailEvent;
 import com.example.linkb.Class.RecommendEvent;
 import com.example.linkb.mainFrag.MainHomeFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -41,6 +43,8 @@ public class EventDetail extends AppCompatActivity {
     Intent intent;
     String eventId;
 
+    ScrollView scrollView;
+
     ImageButton beforeBtn;
     TextView detailTitle;
     ImageView detailImage;
@@ -57,6 +61,8 @@ public class EventDetail extends AppCompatActivity {
     RecyclerView recommendEventRecycler;
     Button joinBtn;
 
+    FloatingActionButton upScrollFab;
+
     ArrayList<DetailEvent> detailList;
     ArrayList<RecommendEvent> recommendedEventList;
     Bitmap bitmap;
@@ -67,12 +73,14 @@ public class EventDetail extends AppCompatActivity {
         setContentView(R.layout.activity_event_detail);
 
         context = EventDetail.this;
+        scrollView = (ScrollView) findViewById(R.id.scollView);
 
         intent = getIntent();
         eventId = intent.getExtras().getString("event_id");
 
         beforeBtn = (ImageButton) findViewById(R.id.before_btn);
         recommendEventRecycler = (RecyclerView) findViewById(R.id.recommend_event_list);
+        upScrollFab = (FloatingActionButton) findViewById(R.id.up_scroll_fab);
 
         new RestAPITaskRecommend("http://101.101.161.189/api/index.php/linkb_event/select_event_detail", context, detailList, eventId).execute();
         new RestAPITaskRecommend1("http://101.101.161.189/api/index.php/linkb_event/select_recommend_event_list", recommendEventRecycler, context).execute();
@@ -81,6 +89,13 @@ public class EventDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        upScrollFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scrollView.fullScroll(ScrollView.FOCUS_UP);
             }
         });
     }
